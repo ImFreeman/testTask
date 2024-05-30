@@ -1,4 +1,3 @@
-using Features.UI.Scripts.Interfaces;
 using Features.UI.Scripts.Realization;
 
 public interface IUIService

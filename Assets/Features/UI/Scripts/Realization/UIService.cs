@@ -12,9 +12,17 @@ namespace Features.UI.Scripts.Realization
         private readonly IDictionary<Type, UIBaseWindow> _prefabStorage;
         private readonly IDictionary<Type, UIBaseWindow> _windowsOnScene;
 
+        public UIService(IUIRoot uiRoot)
+        {
+            _uiRoot = uiRoot;
+
+            _prefabStorage = new Dictionary<Type, UIBaseWindow>();
+            _windowsOnScene = new Dictionary<Type, UIBaseWindow>();
+        }
+
         public void LoadWindows()
         {
-            var windows = Resources.LoadAll("UIWindows", typeof(UIBaseWindow));
+            var windows = Resources.LoadAll("Windows", typeof(UIBaseWindow));
 
             foreach (var window in windows)
             {
@@ -28,7 +36,7 @@ namespace Features.UI.Scripts.Realization
             var type = typeof(T);
             if (!_windowsOnScene.ContainsKey(type) && _prefabStorage.TryGetValue(type, out var windowPrefab))
             {
-                var window = Object.Instantiate(windowPrefab as T, _uiRoot.Container, true);
+                var window = Object.Instantiate(windowPrefab as T, _uiRoot.Container, false);
                 window.Show();
                 _windowsOnScene.Add(type, window);
                 return window;
