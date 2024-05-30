@@ -15,7 +15,7 @@ namespace Features.CharacterSelection.Scripts
         private readonly ISelectableDataContainer<SelectableCharacterData> _selectableDataContainer;
         private readonly Dictionary<string, SelectableCharacterData> _dataStorage;
 
-        private readonly CharacterSelectionKeyboardInputHandler _inputHandler;
+        private readonly CharacterSelectionInputHandler _inputHandler;
         private readonly CharacterSelectionScreenController _screenController;
         private readonly CharacterSelectionButtonsHandler _buttonsHandler;
 
@@ -33,7 +33,7 @@ namespace Features.CharacterSelection.Scripts
 
             _selector = new DataSelector<SelectableCharacterData>(_selectableDataContainer);
 
-            _inputHandler = new CharacterSelectionKeyboardInputHandler(_uiService, _input);
+            _inputHandler = new CharacterSelectionInputHandler(_uiService, _input);
             _screenController = new CharacterSelectionScreenController(_uiService, _viewPrefab, _selector);
             _buttonsHandler = new CharacterSelectionButtonsHandler(_uiService, _selector, dataStorage);
         }

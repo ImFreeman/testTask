@@ -3,7 +3,7 @@ using Features.Input.Scripts;
 
 namespace Features.CharacterSelection.Scripts
 {
-    public class CharacterSelectionKeyboardInputHandler : IDisposable
+    public class CharacterSelectionInputHandler : IDisposable
     {
         private readonly IUIService _uiService;
         private readonly IInput _input;
@@ -12,7 +12,7 @@ namespace Features.CharacterSelection.Scripts
         private int _currentButtonId;
         private bool _isShown;
 
-        public CharacterSelectionKeyboardInputHandler(IUIService uiService, IInput input)
+        public CharacterSelectionInputHandler(IUIService uiService, IInput input)
         {
             _uiService = uiService;
             _input = input;
