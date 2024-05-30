@@ -12,6 +12,9 @@ namespace Features.UI.Scripts.Realization
         private readonly IDictionary<Type, UIBaseWindow> _prefabStorage;
         private readonly IDictionary<Type, UIBaseWindow> _windowsOnScene;
 
+        public event EventHandler<Type> WindowShown;
+        public event EventHandler<Type> WindowHiden;
+        
         public UIService(IUIRoot uiRoot)
         {
             _uiRoot = uiRoot;
@@ -39,6 +42,7 @@ namespace Features.UI.Scripts.Realization
                 var window = Object.Instantiate(windowPrefab as T, _uiRoot.Container, false);
                 window.Show();
                 _windowsOnScene.Add(type, window);
+                WindowShown?.Invoke(this, type);
                 return window;
             }
 
@@ -50,9 +54,11 @@ namespace Features.UI.Scripts.Realization
         {
             if (Get<T>(out var window))
             {
+                var type = typeof(T);
                 window.Hide();
+                WindowHiden?.Invoke(this, type);
                 Object.Destroy(window.gameObject);
-                _windowsOnScene.Remove(typeof(T));
+                _windowsOnScene.Remove(type);
             }
         }
 
@@ -68,5 +74,7 @@ namespace Features.UI.Scripts.Realization
             window = null;
             return false;
         }
+
+        
     }
 }

@@ -6,15 +6,14 @@ namespace Features.DataSelector.Scripts.Realization
 {
     public class DataSelector<T> : IDisposable, IDataSelector<T> where T : ISelectableData
     {
-        private readonly ISelectedObjectView<T> _view;
         private readonly ISelectableDataContainer<T> _selectableDataContainer;
+        
+        private ISelectedObjectView<T> _view;
 
-        protected DataSelector(
-            ISelectableDataContainer<T> selectableDataContainer,
-            ISelectedObjectView<T> view)
+        public DataSelector(
+            ISelectableDataContainer<T> selectableDataContainer)
         {
             _selectableDataContainer = selectableDataContainer;
-            _view = view;
 
             _selectableDataContainer.OnDataChanged += OnDataChanged;
         }
@@ -22,6 +21,11 @@ namespace Features.DataSelector.Scripts.Realization
         public void Select(T data)
         {
             _selectableDataContainer.CurrentData = data;
+        }
+
+        public void SetView(ISelectedObjectView<T> view)
+        {
+            _view = view;
         }
 
         public void Dispose()
