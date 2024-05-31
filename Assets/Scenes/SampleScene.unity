@@ -313,8 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a30dd831dfd4caf9f0ffce439181217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1737183920}
-  camera: {fileID: 963194227}
   container: {fileID: 948689882}
 --- !u!224 &948689882
 RectTransform:
