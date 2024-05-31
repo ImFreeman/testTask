@@ -15,5 +15,5 @@ MonoBehaviour:
   _id: cube
   characterName: Cube
   _level: 10
-  _avatar: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  _avatar: {fileID: 21300000, guid: 81d2728df11e8fe47adfc6e4a663f5c7, type: 3}
   _visual: {fileID: 8700574984711384497, guid: d8e3ad6da423ea34aaacaf90664f6d39, type: 3}

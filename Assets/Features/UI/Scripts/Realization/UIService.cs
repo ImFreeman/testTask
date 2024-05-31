@@ -75,6 +75,11 @@ namespace Features.UI.Scripts.Realization
             return false;
         }
 
-        
+
+        public void Dispose()
+        {
+            _prefabStorage.Clear();
+            _windowsOnScene.Clear();
+        }
     }
 }

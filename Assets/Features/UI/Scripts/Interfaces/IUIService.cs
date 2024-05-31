@@ -2,7 +2,7 @@ using System;
 using Features.UI.Scripts.Realization;
 using UnityEngine.Video;
 
-public interface IUIService
+public interface IUIService : IDisposable
 {
     public void LoadWindows();
     public T Show<T>() where T : UIBaseWindow;
