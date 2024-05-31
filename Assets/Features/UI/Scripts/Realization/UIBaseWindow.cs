@@ -6,20 +6,15 @@ namespace Features.UI.Scripts.Realization
 {
     public abstract class UIBaseWindow : MonoBehaviour, IWindow
     {
-        public event EventHandler ShowEvent;
-        public event EventHandler HideEvent;
-        
         [SerializeField] private RectTransform rectTransform;
         
         public void Show()
         {
-            ShowEvent?.Invoke(this, EventArgs.Empty);
             OnShow();
         }
 
         public void Hide()
         {
-            HideEvent?.Invoke(this, EventArgs.Empty);
             OnHide();
         }
 

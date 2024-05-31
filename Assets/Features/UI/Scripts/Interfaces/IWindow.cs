@@ -5,9 +5,6 @@ namespace Features.UI.Scripts.Interfaces
 {
     public interface IWindow
     {
-        public event EventHandler ShowEvent;
-        public event EventHandler HideEvent;
-
         public void Show();
         public void Hide();
 
