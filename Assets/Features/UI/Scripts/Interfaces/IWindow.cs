@@ -7,7 +7,5 @@ namespace Features.UI.Scripts.Interfaces
     {
         public void Show();
         public void Hide();
-
-        public void SetNewParent(RectTransform parent);
     }
 }

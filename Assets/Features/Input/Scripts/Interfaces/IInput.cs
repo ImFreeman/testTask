@@ -1,6 +1,7 @@
 using System;
+using Features.Input.Scripts.Enums;
 
-namespace Features.Input.Scripts
+namespace Features.Input.Scripts.Interfaces
 {
     public interface IInput
     {

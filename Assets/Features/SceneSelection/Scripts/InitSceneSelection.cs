@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Features.DataSelector.Scripts.Interfaces;
 using Features.DataSelector.Scripts.Realization;
 using Features.Input.Scripts;
-using Features.SelectableDataContainer.Interfaces;
-using Features.SelectableDataContainer.Realization;
+using Features.Input.Scripts.Interfaces;
+using Features.UI.Scripts.Interfaces;
 
 namespace Features.SceneSelection.Scripts
 {

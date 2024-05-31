@@ -1,12 +1,10 @@
 using System;
 using Features.DataSelector.Scripts.Interfaces;
-using Features.SelectableDataContainer.Interfaces;
 
-namespace Features.SelectableDataContainer.Realization
+namespace Features.DataSelector.Scripts.Realization
 {
     public class SelectableDataContainer<T> : ISelectableDataContainer<T> where T : ISelectableData
     {
-        private T _data;
         public T CurrentData
         {
             get => _data;
@@ -16,6 +14,9 @@ namespace Features.SelectableDataContainer.Realization
                 OnDataChanged?.Invoke(this, _data);
             }
         }
+        
         public event EventHandler<T> OnDataChanged;
+        
+        private T _data;
     }
 }

@@ -1,4 +1,6 @@
 using System;
+using Features.DataSelector.Scripts.Interfaces;
+using Features.UI.Scripts.Interfaces;
 using Object = UnityEngine.Object;
 
 namespace Features.CharacterSelection.Scripts
@@ -20,7 +22,13 @@ namespace Features.CharacterSelection.Scripts
             _viewPrefab = viewPrefab;
             _selector = selector;
             _uiService.WindowShown += OnWindowShown;
-            _uiService.WindowHiden += OnWindowHiden;
+            _uiService.WindowHided += OnWindowHiden;
+        }
+        
+        public void Dispose()
+        {
+            _uiService.WindowShown -= OnWindowShown;
+            _uiService.WindowHided -= OnWindowHiden;
         }
         
         private void OnWindowShown(object sender, Type e)
@@ -42,12 +50,6 @@ namespace Features.CharacterSelection.Scripts
             {
                 Object.Destroy(_currentView.gameObject);
             }
-        }
-
-        public void Dispose()
-        {
-            _uiService.WindowShown -= OnWindowShown;
-            _uiService.WindowHiden -= OnWindowHiden;
         }
     }
 }

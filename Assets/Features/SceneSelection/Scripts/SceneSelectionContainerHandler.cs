@@ -1,4 +1,4 @@
-using Features.SelectableDataContainer.Interfaces;
+using Features.DataSelector.Scripts.Interfaces;
 using UnityEngine.SceneManagement;
 
 namespace Features.SceneSelection.Scripts
@@ -6,6 +6,7 @@ namespace Features.SceneSelection.Scripts
     public class SceneSelectionContainerHandler
     {
         private readonly ISelectableDataContainer<SceneSelectionData> _container;
+        
         private int _currentLoadedScene = -1;
 
         public SceneSelectionContainerHandler(ISelectableDataContainer<SceneSelectionData> container)

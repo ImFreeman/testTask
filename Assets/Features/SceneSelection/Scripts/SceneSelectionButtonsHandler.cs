@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Features.DataSelector.Scripts.Interfaces;
+using Features.UI.Scripts.Interfaces;
 
 namespace Features.SceneSelection.Scripts
 {
@@ -24,7 +26,22 @@ namespace Features.SceneSelection.Scripts
             _sceneSelectionContainer = sceneSelectionContainer;
 
             _uiService.WindowShown += OnWindowShown;
-            _uiService.WindowHiden += OnWindowHiden;
+            _uiService.WindowHided += OnWindowHiden;
+        }
+        
+        public void Dispose()
+        {
+            _sceneSelectionContainer.UnloadCurrentScene();
+            if (_isShown)
+            {
+                if (_uiService.Get<SceneSelectionWindowView>(out var window))
+                {
+                    window.SceneButtonPressed -= OnSceneButtonPressed;
+                    window.LoadSceneButtonPressed -= OnLoadSceneButtonPressed;
+                }
+            }
+            _uiService.WindowShown -= OnWindowShown;
+            _uiService.WindowHided -= OnWindowHiden;
         }
 
         private void OnWindowShown(object sender, Type e)
@@ -64,21 +81,6 @@ namespace Features.SceneSelection.Scripts
                     _isShown = false;
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            _sceneSelectionContainer.UnloadCurrentScene();
-            if (_isShown)
-            {
-                if (_uiService.Get<SceneSelectionWindowView>(out var window))
-                {
-                    window.SceneButtonPressed -= OnSceneButtonPressed;
-                    window.LoadSceneButtonPressed -= OnLoadSceneButtonPressed;
-                }
-            }
-            _uiService.WindowShown -= OnWindowShown;
-            _uiService.WindowHiden -= OnWindowHiden;
         }
     }
 }

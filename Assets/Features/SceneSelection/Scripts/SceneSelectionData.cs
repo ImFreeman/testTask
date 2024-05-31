@@ -1,18 +1,22 @@
 using Features.DataSelector.Scripts.Realization;
 using UnityEngine;
-[CreateAssetMenu(fileName = "SceneData", menuName = "SelectableData/SceneData", order = 2)]
-public class SceneSelectionData : BaseSelectableData
+
+namespace Features.SceneSelection.Scripts
 {
-    [SerializeField] private string _name;
-    [SerializeField] private string _description;
-    [SerializeField] private Sprite _spriteArt;
-    [SerializeField] private int _sceneId;
+    [CreateAssetMenu(fileName = "SceneData", menuName = "SelectableData/SceneData", order = 2)]
+    public class SceneSelectionData : BaseSelectableData
+    {
+        public string Name => _name;
 
-    public string Name => _name;
+        public string Description => _description;
 
-    public string Description => _description;
+        public Sprite SpriteArt => _spriteArt;
 
-    public Sprite SpriteArt => _spriteArt;
-
-    public int SceneId => _sceneId;
+        public int SceneId => _sceneId;
+        
+        [SerializeField] private string _name;
+        [SerializeField] private string _description;
+        [SerializeField] private Sprite _spriteArt;
+        [SerializeField] private int _sceneId;
+    }
 }

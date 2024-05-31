@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Features.DataSelector.Scripts.Interfaces;
+using Features.UI.Scripts.Interfaces;
 
 namespace Features.CharacterSelection.Scripts
 {
@@ -18,7 +20,13 @@ namespace Features.CharacterSelection.Scripts
             _dataStorage = dataStorage;
 
             _uiService.WindowShown += OnWindowShown;
-            _uiService.WindowHiden += OnWindowHiden;
+            _uiService.WindowHided += OnWindowHiden;
+        }
+        
+        public void Dispose()
+        {
+            _uiService.WindowShown -= OnWindowShown;
+            _uiService.WindowHided -= OnWindowHiden;
         }
 
         private void OnWindowShown(object sender, Type e)
@@ -49,12 +57,6 @@ namespace Features.CharacterSelection.Scripts
                     window.CharacterButtonPressed -= OnCharacterButtonPressed;
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            _uiService.WindowShown -= OnWindowShown;
-            _uiService.WindowHiden -= OnWindowHiden;
         }
     }
 }

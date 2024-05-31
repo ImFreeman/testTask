@@ -1,5 +1,8 @@
 using System;
 using Features.Input.Scripts;
+using Features.Input.Scripts.Enums;
+using Features.Input.Scripts.Interfaces;
+using Features.UI.Scripts.Interfaces;
 
 namespace Features.CharacterSelection.Scripts
 {
@@ -18,7 +21,17 @@ namespace Features.CharacterSelection.Scripts
             _input = input;
             
             _uiService.WindowShown += OnWindowShown;
-            _uiService.WindowHiden += OnWindowHiden;
+            _uiService.WindowHided += OnWindowHiden;
+        }
+        
+        public void Dispose()
+        {
+            if (_isShown)
+            {
+                _input.InputPressed -= OnInputPressed;
+            }
+            _uiService.WindowShown -= OnWindowShown;
+            _uiService.WindowHided -= OnWindowHiden;
         }
         
         private void OnWindowShown(object sender, Type e)
@@ -62,16 +75,6 @@ namespace Features.CharacterSelection.Scripts
                 _input.InputPressed -= OnInputPressed;
                 _isShown = false;
             }
-        }
-
-        public void Dispose()
-        {
-            if (_isShown)
-            {
-                _input.InputPressed -= OnInputPressed;
-            }
-            _uiService.WindowShown -= OnWindowShown;
-            _uiService.WindowHiden -= OnWindowHiden;
         }
     }
 }

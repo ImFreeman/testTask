@@ -4,47 +4,49 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class CharacterSelectionWindowView : UIBaseWindow
+namespace Features.CharacterSelection.Scripts
 {
-    [SerializeField] private TMP_Text _nameText;
-    [SerializeField] private TMP_Text _levelText;
-    [SerializeField] private Image _avatarImage;
-    [SerializeField] private CharacterButtonData[] _buttons;
-
-    public TMP_Text NameText => _nameText;
-
-    public TMP_Text LevelText => _levelText;
-
-    public Image AvatarImage => _avatarImage;
-
-    public CharacterButtonData[] Buttons => _buttons;
-
-    public event EventHandler<string> CharacterButtonPressed;
-
-    protected override void OnShow()
+    public class CharacterSelectionWindowView : UIBaseWindow
     {
-        foreach (var button in _buttons)
+        public TMP_Text NameText => _nameText;
+
+        public TMP_Text LevelText => _levelText;
+
+        public Image AvatarImage => _avatarImage;
+
+        public CharacterButtonData[] Buttons => _buttons;
+
+        public event EventHandler<string> CharacterButtonPressed;
+        
+        [SerializeField] private TMP_Text _nameText;
+        [SerializeField] private TMP_Text _levelText;
+        [SerializeField] private Image _avatarImage;
+        [SerializeField] private CharacterButtonData[] _buttons;
+
+        protected override void OnShow()
         {
-            button.Button.onClick.AddListener(() =>
+            foreach (var button in _buttons)
             {
-                CharacterButtonPressed?.Invoke(this, button.CharacterID);
-            });
+                button.Button.onClick.AddListener(() =>
+                {
+                    CharacterButtonPressed?.Invoke(this, button.CharacterID);
+                });
+            }
         }
-    }
 
-    protected override void OnHide()
-    {
-        foreach (var button in _buttons)
+        protected override void OnHide()
         {
-            button.Button.onClick.RemoveAllListeners();
+            foreach (var button in _buttons)
+            {
+                button.Button.onClick.RemoveAllListeners();
+            }
         }
-    }
     
-    [Serializable]
-    public struct CharacterButtonData
-    {
-        public Button Button;
-        public string CharacterID;
+        [Serializable]
+        public struct CharacterButtonData
+        {
+            public Button Button;
+            public string CharacterID;
+        }
     }
 }

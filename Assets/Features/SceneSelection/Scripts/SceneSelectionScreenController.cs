@@ -1,4 +1,6 @@
 using System;
+using Features.DataSelector.Scripts.Interfaces;
+using Features.UI.Scripts.Interfaces;
 
 namespace Features.SceneSelection.Scripts
 {
@@ -16,6 +18,11 @@ namespace Features.SceneSelection.Scripts
             _uiService.WindowShown += OnWindowShown;
         }
         
+        public void Dispose()
+        {
+            _uiService.WindowShown -= OnWindowShown;
+        }
+        
         private void OnWindowShown(object sender, Type e)
         {
             if (e == typeof(SceneSelectionWindowView))
@@ -25,11 +32,6 @@ namespace Features.SceneSelection.Scripts
                     _selector.SetView(window);
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            _uiService.WindowShown -= OnWindowShown;
         }
     }
 }

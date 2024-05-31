@@ -1,7 +1,9 @@
 using System;
+using Features.Input.Scripts.Enums;
+using Features.Input.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Features.Input.Scripts
+namespace Features.Input.Scripts.Realization
 {
     public class KeyboardInput : MonoBehaviour, IInput
     {

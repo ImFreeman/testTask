@@ -1,7 +1,6 @@
 using System;
-using Features.DataSelector.Scripts.Interfaces;
 
-namespace Features.SelectableDataContainer.Interfaces
+namespace Features.DataSelector.Scripts.Interfaces
 {
     public interface ISelectableDataContainer<T> where T : ISelectableData
     {

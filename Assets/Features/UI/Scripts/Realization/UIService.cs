@@ -8,12 +8,12 @@ namespace Features.UI.Scripts.Realization
 {
     public class UIService : IUIService
     {
+        public event EventHandler<Type> WindowShown;
+        public event EventHandler<Type> WindowHided;
+        
         private readonly IUIRoot _uiRoot;
         private readonly IDictionary<Type, UIBaseWindow> _prefabStorage;
         private readonly IDictionary<Type, UIBaseWindow> _windowsOnScene;
-
-        public event EventHandler<Type> WindowShown;
-        public event EventHandler<Type> WindowHiden;
         
         public UIService(IUIRoot uiRoot)
         {
@@ -56,7 +56,7 @@ namespace Features.UI.Scripts.Realization
             {
                 var type = typeof(T);
                 window.Hide();
-                WindowHiden?.Invoke(this, type);
+                WindowHided?.Invoke(this, type);
                 Object.Destroy(window.gameObject);
                 _windowsOnScene.Remove(type);
             }
@@ -74,8 +74,7 @@ namespace Features.UI.Scripts.Realization
             window = null;
             return false;
         }
-
-
+        
         public void Dispose()
         {
             _prefabStorage.Clear();

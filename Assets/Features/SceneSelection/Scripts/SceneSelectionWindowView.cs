@@ -9,19 +9,23 @@ namespace Features.SceneSelection.Scripts
 {
     public class SceneSelectionWindowView : UIBaseWindow, ISelectedObjectView<SceneSelectionData>
     {
+        public CharacterButtonData[] Buttons => _buttons;
+        public event EventHandler<string> SceneButtonPressed;
+        public event EventHandler LoadSceneButtonPressed;
         
         [SerializeField] private CharacterButtonData[] _buttons;
         [SerializeField] private Button _loadSceneButton;
-        
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private TMP_Text _descriptionText;
         [SerializeField] private Image _sceneImage;
+
+        public void UpdateView(SceneSelectionData data)
+        {
+            _nameText.text = data.Name;
+            _descriptionText.text = data.Description;
+            _sceneImage.sprite = data.SpriteArt;
+        }
         
-        public CharacterButtonData[] Buttons => _buttons;
-
-        public event EventHandler<string> SceneButtonPressed;
-        public event EventHandler LoadSceneButtonPressed;
-
         protected override void OnShow()
         {
             foreach (var button in _buttons)
@@ -52,13 +56,6 @@ namespace Features.SceneSelection.Scripts
         {
             public Button Button;
             public string SceneID;
-        }
-
-        public void UpdateView(SceneSelectionData data)
-        {
-            _nameText.text = data.Name;
-            _descriptionText.text = data.Description;
-            _sceneImage.sprite = data.SpriteArt;
         }
     }
 }

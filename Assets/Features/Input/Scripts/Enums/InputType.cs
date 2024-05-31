@@ -1,4 +1,4 @@
-namespace Features.Input.Scripts
+namespace Features.Input.Scripts.Enums
 {
     public enum InputType
     {

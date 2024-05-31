@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Features.DataSelector.Scripts.Interfaces;
 using Features.DataSelector.Scripts.Realization;
 using Features.Input.Scripts;
-using Features.SelectableDataContainer.Interfaces;
-using Features.SelectableDataContainer.Realization;
+using Features.Input.Scripts.Interfaces;
+using Features.UI.Scripts.Interfaces;
 
 namespace Features.CharacterSelection.Scripts
 {
     public class InitCharacterSelection : IDisposable
     {
         private readonly IDataSelector<SelectableCharacterData> _selector;
-        private readonly ISelectableDataContainer<SelectableCharacterData> _selectableDataContainer;
 
         private readonly CharacterSelectionInputHandler _inputHandler;
         private readonly CharacterSelectionScreenController _screenController;
@@ -22,8 +22,8 @@ namespace Features.CharacterSelection.Scripts
             SelectableCharacterView viewPrefab,
             Dictionary<string, SelectableCharacterData> dataStorage)
         {
-            _selectableDataContainer = new SelectableDataContainer<SelectableCharacterData>();
-            _selector = new DataSelector<SelectableCharacterData>(_selectableDataContainer);
+            ISelectableDataContainer<SelectableCharacterData> selectableDataContainer = new SelectableDataContainer<SelectableCharacterData>();
+            _selector = new DataSelector<SelectableCharacterData>(selectableDataContainer);
 
             _inputHandler = new CharacterSelectionInputHandler(uiService, input);
             _screenController = new CharacterSelectionScreenController(uiService, viewPrefab, _selector);

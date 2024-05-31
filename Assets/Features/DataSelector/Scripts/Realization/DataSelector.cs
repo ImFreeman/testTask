@@ -1,6 +1,5 @@
 using System;
 using Features.DataSelector.Scripts.Interfaces;
-using Features.SelectableDataContainer.Interfaces;
 
 namespace Features.DataSelector.Scripts.Realization
 {
